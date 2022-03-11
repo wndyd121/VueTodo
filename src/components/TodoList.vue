@@ -1,43 +1,26 @@
 <template>
     <div>
-        <ul>
-            <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem.item" class="shadow">
-                <i class="checkBtn fa-solid fa-check" v-bind:class="{checkBtnCompleted: todoItem.completed }" v-on:click="toggleComplete(todoItem)"></i>
+        <transition-group name="list" tag="ul">
+            <li v-for="(todoItem, index) in propsdata" v-bind:key="todoItem.item" v-on:click="toggleComplete(todoItem, index)" class="shadow">
+                <i class="checkBtn fa-solid fa-check" v-bind:class="{checkBtnCompleted: todoItem.completed }"></i>
                 <span v-bind:class="{textCompleted: todoItem.completed }">{{ todoItem.item }}</span>
                 <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
                 <i class="fa-solid fa-trash-can"></i>
                 </span>
             </li>
-        </ul>
+        </transition-group>
     </div>
 </template>
 
 <script>
 export default {
-    data: function(){
-        return {
-            todoItems: []
-        }
-    },
+    props: ['propsdata'],
     methods:{
         removeTodo: function (todoItem, index) {
-            localStorage.removeItem(todoItem);
-            this.todoItems.splice(index, 1);
+            this.$emit('removeItem', todoItem, index);
         },
-        toggleComplete: function(todoItem){
-            todoItem.completed = !todoItem.completed;
-            // 로컬 히스토리에 데이터 갱신
-            localStorage.removeItem(todoItem.item);
-            localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
-        }
-    },
-    created: function(){
-        if(localStorage.length > 0){
-            for(var i = 0; i < localStorage.length; i++){
-                if(localStorage.key(i) != 'loglevel:webpack-dev-server'){
-                    this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-                }
-            }
+        toggleComplete: function(todoItem, index){
+            this.$emit('toggleItem', todoItem, index);
         }
     }
 }
@@ -75,5 +58,14 @@ li {
 .textCompleted {
     text-decoration: line-through;
     color: #b3adad;
+}
+
+/* 리스트 아이템 트랜지션 효과 */
+.list-enter-active, .list-leave-active {
+  transition: all 0.7s;
+}
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>
