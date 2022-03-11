@@ -6,10 +6,6 @@
         </span>
       
         <Modal v-if="showModal">
-            <!--
-            you can use custom content here to overwrite
-            default content
-            -->
             <h3 slot="header">
                 경고!
                 <i class="closeModalBtn fa-solid fa-xmark" @click="showModal = false"></i>
@@ -25,14 +21,14 @@
 import Modal from './common/modal.vue'
 
 export default {
-    data: function(){
+    data () {
         return {
             newTodoItem: "",
             showModal: false
         }
     },
     methods: {
-        addTodo: function(){
+        addTodo () {
             if(this.newTodoItem != ''){
                 this.$emit('addTodoItem', this.newTodoItem);
                 this.clearInput();
@@ -41,12 +37,12 @@ export default {
                 this.showModal = !this.showModal
             }
         },
-        clearInput: function(){
+        clearInput () {
             this.newTodoItem = '';
         }
     },
     components: {
-        Modal: Modal
+        Modal
     }
 }
 </script>
