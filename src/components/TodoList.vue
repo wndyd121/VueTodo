@@ -1,11 +1,11 @@
 <template>
     <div>
         <transition-group name="list" tag="ul">
-            <li v-for="(todoItem, index) in this.$store.state.todoItems" v-bind:key="todoItem.item" v-on:click="toggleComplete(todoItem, index)" class="shadow">
+            <li v-for="(todoItem, index) in this.$store.state.todoItems" v-bind:key="todoItem.item" class="shadow" v-on:click="toggleComplete(todoItem, index)">
                 <i class="checkBtn fa-solid fa-check" v-bind:class="{checkBtnCompleted: todoItem.completed }"></i>
                 <span v-bind:class="{textCompleted: todoItem.completed }">{{ todoItem.item }}</span>
-                <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
-                <i class="fa-solid fa-trash-can"></i>
+                <span class="removeBtn" v-on:click.stop="removeTodo(todoItem, index)">
+                    <i class="fa-solid fa-trash-can"></i>
                 </span>
             </li>
         </transition-group>
@@ -16,10 +16,10 @@
 export default {
     methods:{
         removeTodo (todoItem, index) {
-            this.$emit('removeItem', todoItem, index);
+            this.$store.commit('removeOneItem', { todoItem, index });
         },
         toggleComplete (todoItem, index) {
-            this.$emit('toggleItem', todoItem, index);
+            this.$store.commit('toggleOneItem', { todoItem, index });
         }
     }
 }

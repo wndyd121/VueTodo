@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <TodoHeader v-bind:propsdata="itemLength"></TodoHeader>
-    <TodoInput v-on:addTodoItem="addOneItem"></TodoInput>
-    <TodoList v-bind:propsdata="todoItems" v-on:removeItem="removeOneItem" v-on:toggleItem="toggleOneItem"></TodoList>
-    <TodoFooter v-on:clearAll="clearAllItems"></TodoFooter>
+    <TodoHeader></TodoHeader>
+    <TodoInput></TodoInput>
+    <TodoList></TodoList>
+    <TodoFooter></TodoFooter>
   </div>
 </template>
 
@@ -14,39 +14,6 @@ import TodoList from './components/TodoList.vue'
 import TodoFooter from './components/TodoFooter.vue'
 
 export default {
-  data () {
-    return {
-      todoItems: []
-    }
-  },
-  computed: {
-    itemLength () {
-      let itemLength = this.todoItems.filter( v => !v.completed ).length;
-      return (itemLength == 0 ? 'no' : itemLength )+ ' item' + ( itemLength > 1 ? 's' : '') + ' left'
-    }
-  },
-  methods:{
-    addOneItem (todoItem) {
-      let obj = { completed: false, item: todoItem };
-      localStorage.setItem(todoItem, JSON.stringify(obj));
-      this.todoItems.push(obj);
-    },
-    removeOneItem (todoItem, index) {
-      localStorage.removeItem(todoItem.item);
-      this.todoItems.splice(index, 1);
-    },
-    toggleOneItem (todoItem, index) {
-      // todoItem.completed = !todoItem.completed;
-      this.todoItems[index].completed = !todoItem.completed;
-      // 로컬 히스토리에 데이터 갱신
-      localStorage.removeItem(todoItem.item);
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
-    },
-    clearAllItems () {
-      localStorage.clear();
-      this.todoItems = [];
-    }
-  },
   components:{
     // 'TodoHeader': TodoHeader,
     TodoHeader,

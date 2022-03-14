@@ -1,15 +1,9 @@
 <template>
     <header>
         <h1>TODO it!</h1>
-        <h3>{{ propsdata }}</h3>
+        <h3>{{ this.$store.getters['getItemLength'] }}</h3>
     </header>
 </template>
-
-<script>
-export default {
-    props:['propsdata']
-}
-</script>
 
 <style scoped>
 h1 {
