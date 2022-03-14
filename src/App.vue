@@ -4,6 +4,7 @@
     <TodoInput></TodoInput>
     <TodoList></TodoList>
     <TodoFooter></TodoFooter>
+    <Modal></Modal>
   </div>
 </template>
 
@@ -12,14 +13,15 @@ import TodoHeader from './components/TodoHeader.vue'
 import TodoInput from './components/TodoInput.vue'
 import TodoList from './components/TodoList.vue'
 import TodoFooter from './components/TodoFooter.vue'
+import Modal from './components/common/modal.vue'
 
 export default {
   components:{
-    // 'TodoHeader': TodoHeader,
     TodoHeader,
     TodoInput,
     TodoList,
-    TodoFooter
+    TodoFooter,
+    Modal
   }
 }
 </script>
