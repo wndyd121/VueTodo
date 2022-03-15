@@ -47,24 +47,25 @@ export const store = new Vuex.Store({
             state.todoItems = [];
         },
         showModal(state, payload) {
-
             let typeTxt = '';
-
             switch (payload.modalType) {
-                case 'S':
+                case 'S':   //Success
                     typeTxt = '성공';
                     break;
-                case 'I':
+                case 'I':   // Info
                     typeTxt = '알림';
                     break;
-                case 'W':
+                case 'W':   // Warning
                     typeTxt = '경고';
                     break;
-                case 'E':
+                case 'E':   // Error
                     typeTxt = '오류';
                     break;
+                    
+                default:
+                    typeTxt = '알림';
+                    break;
             }
-
             state.modalData.modalType = typeTxt;
             state.modalData.modalText = payload.modalText;
             state.modalData.showModal = true;

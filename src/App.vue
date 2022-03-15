@@ -30,6 +30,7 @@ export default {
 body{
   text-align: center;
   background-color: #F6F6F6;
+  font-family: 'Ubuntu', sans-serif;
 }
 input{
   border-style: groove;
