@@ -9,37 +9,37 @@
 </template>
 
 <script>
-import TodoHeader from './components/TodoHeader.vue'
-import TodoInput from './components/TodoInput.vue'
-import TodoList from './components/TodoList.vue'
-import TodoFooter from './components/TodoFooter.vue'
-import Modal from './components/common/modal.vue'
+import TodoHeader from "./components/TodoHeader.vue";
+import TodoInput from "./components/TodoInput.vue";
+import TodoList from "./components/TodoList.vue";
+import TodoFooter from "./components/TodoFooter.vue";
+import Modal from "./components/common/modal.vue";
 
 export default {
-  components:{
+  components: {
     TodoHeader,
     TodoInput,
     TodoList,
     TodoFooter,
-    Modal
-  }
-}
+    Modal,
+  },
+};
 </script>
 
 <style>
-body{
+body {
   text-align: center;
-  background-color: #F6F6F6;
-  font-family: 'Ubuntu', sans-serif;
+  background-color: #f6f6f6;
+  font-family: "Ubuntu", sans-serif;
 }
-input{
+input {
   border-style: groove;
   width: 200px;
 }
-button{
+button {
   border-style: groove;
 }
-.shadow{
+.shadow {
   box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.15);
 }
 </style>

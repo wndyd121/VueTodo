@@ -1,18 +1,21 @@
 <template>
   <transition name="modal">
-    <div class="modal-mask" v-if="this.$store.state.modalData.showModal">
+    <div class="modal-mask" v-if="this.modalData.showModal">
       <div class="modal-wrapper">
         <div class="modal-container">
           <div class="modal-header">
             <h3>
-              {{ this.$store.state.modalData.modalType }}
-              <i class="closeModalBtn fa-solid fa-xmark" @click="hideModal"></i>
+              {{ this.modalData.modalType }}
+              <i
+                class="closeModalBtn fa-solid fa-xmark"
+                @click="hideModal()"
+              ></i>
             </h3>
           </div>
 
           <div class="modal-body">
             <div>
-              {{ this.$store.state.modalData.modalText }}
+              {{ this.modalData.modalText }}
             </div>
           </div>
         </div>
@@ -22,11 +25,16 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
+
 export default {
   methods: {
-    hideModal() {
-      this.$store.commit("changeModalStatus");
-    },
+    ...mapMutations({
+      hideModal: "changeModalStatus",
+    }),
+  },
+  computed: {
+    ...mapState(["modalData"]),
   },
 };
 </script>
@@ -57,7 +65,7 @@ export default {
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .modal-header h3 {

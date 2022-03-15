@@ -61,7 +61,7 @@ export const store = new Vuex.Store({
                 case 'E':   // Error
                     typeTxt = '오류';
                     break;
-                    
+
                 default:
                     typeTxt = '알림';
                     break;
@@ -77,6 +77,9 @@ export const store = new Vuex.Store({
         }
     },
     getters: {
+        storedTodoItems(state) {
+            return state.todoItems;
+        },
         getItemLength(state) {
             let itemLength = state.todoItems.filter(v => !v.completed).length;
             return (itemLength == 0 ? 'no' : itemLength) + ' item' + (itemLength > 1 ? 's' : '') + ' left'

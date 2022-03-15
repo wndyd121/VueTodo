@@ -35,8 +35,8 @@ export default {
     },
     clearInput() {
       this.newTodoItem = "";
-    },
-  },
+    }
+  }
 };
 </script>
 

@@ -1,9 +1,19 @@
 <template>
   <header>
     <h1>TODO it!</h1>
-    <h3>{{ this.$store.getters["getItemLength"] }}</h3>
+    <h3>{{ this.getItemLength }}</h3>
   </header>
 </template>
+
+<script>
+import { mapGetters } from "vuex";
+
+export default {
+  computed: {
+    ...mapGetters(["getItemLength"]),
+  },
+};
+</script>
 
 <style scoped>
 h1 {
