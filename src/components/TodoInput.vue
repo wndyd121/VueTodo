@@ -8,29 +8,30 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   data() {
-    return {
-      newTodoItem: "",
-    };
+    return { newTodoItem: "" };
   },
   methods: {
+    ...mapMutations(['addOneItem', 'showModal']),
     addTodo() {
       if (this.newTodoItem != "") {
         if (localStorage.getItem(this.newTodoItem)) {
-          this.$store.commit("showModal", {
+          this.showModal({
             modalType: "W",
             modalText: "중복된 값은 입력 할 수 없습니다.",
           });
         } else {
-          this.$store.commit("addOneItem", this.newTodoItem);
+          this.addOneItem(this.newTodoItem);
         }
         this.clearInput();
       } else {
-        this.$store.commit("showModal", {
-          modalType: "W",
-          modalText: "아무것도 입력하지 않으셨습니다.",
-        });
+        this.showModal({
+            modalType: "W",
+            modalText: "아무것도 입력하지 않으셨습니다.",
+          });
       }
     },
     clearInput() {

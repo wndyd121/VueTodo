@@ -33,17 +33,8 @@ export default {
     ...mapMutations({
         toggleComplete: 'toggleOneItem'
     })
-    // removeTodo(todoItem, index) {
-    //   this.$store.commit("removeOneItem", { todoItem, index });
-    // },
-    // toggleComplete(todoItem, index) {
-    //   this.$store.commit("toggleOneItem", { todoItem, index });
-    // },
   },
   computed: {
-    //   todoItems() {
-    //       return this.$store.getters.storedTodoItems;
-    //   }
     ...mapGetters(['storedTodoItems'])
   }
 };
