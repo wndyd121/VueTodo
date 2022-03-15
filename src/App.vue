@@ -21,8 +21,8 @@ export default {
     TodoInput,
     TodoList,
     TodoFooter,
-    Modal,
-  },
+    Modal
+  }
 };
 </script>
 

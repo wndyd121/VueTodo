@@ -1,11 +1,11 @@
 <template>
   <transition name="modal">
-    <div class="modal-mask" v-if="this.modalData.showModal">
+    <div class="modal-mask" v-if="this.getModalData.showModal">
       <div class="modal-wrapper">
         <div class="modal-container">
           <div class="modal-header">
             <h3>
-              {{ this.modalData.modalType }}
+              {{ this.getModalData.modalType }}
               <i
                 class="closeModalBtn fa-solid fa-xmark"
                 @click="hideModal()"
@@ -15,7 +15,7 @@
 
           <div class="modal-body">
             <div>
-              {{ this.modalData.modalText }}
+              {{ this.getModalData.modalText }}
             </div>
           </div>
         </div>
@@ -25,17 +25,17 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
+  computed: {
+    ...mapGetters(['getModalData'])
+  },
   methods: {
     ...mapMutations({
       hideModal: "changeModalStatus",
-    }),
-  },
-  computed: {
-    ...mapState(["modalData"]),
-  },
+    })
+  }
 };
 </script>
 
